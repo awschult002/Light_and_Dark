@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="PlaneMesh" id=8]
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 1, 0.001, 1 )
+
+[sub_resource type="Environment" id=7]
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.678431, 0.0470588, 0.713726, 1 )
+
+[sub_resource type="BoxShape" id=5]
+
+[node name="test_scene" type="Spatial"]
+
+[node name="box" type="Spatial" parent="."]
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10, 0 )
+
+[node name="OmniLight" type="OmniLight" parent="box"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.601807, 0 )
+shadow_enabled = true
+omni_range = 60.0
+
+[node name="MeshInstance" type="MeshInstance" parent="box/OmniLight"]
+
+[node name="floor" type="MeshInstance" parent="box"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.273368, -0.507594, -0.0774999 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="box/floor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="box/floor/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00235605, 0.00698833, 0.000105001 )
+shape = SubResource( 9 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13.7021, 16.4739 )
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 7 )
+
+[node name="cube" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.14075, 0 )
+
+[node name="box2" type="RigidBody" parent="cube"]
+
+[node name="MeshInstance" type="MeshInstance" parent="cube/box2"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="cube/box2"]
+shape = SubResource( 5 )
