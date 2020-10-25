@@ -1,0 +1,41 @@
+digraph G {
+graph[layout=circo]
+
+
+stage -> player
+stage -> map
+stage -> buildings 
+stage -> world_objects
+stage -> splash_screen
+stage -> HUD
+stage -> creature
+
+buildings -> temple
+buildings -> food_store
+buildings -> small_house
+buildings -> medium_house
+buildings -> large_house
+buildings -> village_center
+buildings -> workshop
+buildings -> farm
+buildings -> grave_yard
+
+world_objects -> trees
+world_objects -> people
+world_objects -> blueprints
+world_objects -> miracles
+world_objects -> rocks
+world_objects -> resources
+
+resources -> fish
+resources -> grain
+resources -> wood
+
+miracles -> fireball
+miracles -> shower
+miracles -> meteor
+miracles -> forest
+miracles -> vortex
+
+
+}
